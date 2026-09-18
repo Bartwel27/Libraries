@@ -1,4 +1,4 @@
-# Build Guide: Compiling React Components for WebView
+# Compiling React Components for WebView
 
 This project uses raw React (`react.js` + `react-dom.js`) loaded via `<script>` tags inside
 an Android WebView, with JSX components written in separate files under `js/components/`.
@@ -9,7 +9,6 @@ Node script, using Babel's **classic runtime** — this outputs plain `React.cre
 calls that work with the global `React` variable, instead of `import`-based JSX calls that
 require a module system we don't have.
 
----
 
 ## 1. One-time setup
 
@@ -50,14 +49,12 @@ fs.readdirSync(inputDir).forEach(file => {
 });
 ```
 
----
 
 ## 2. Folder structure
 
 ```
 project-root/
 ├── build.js
-├── package.json
 ├── index.html
 ├── css/
 ├── images/
@@ -75,7 +72,6 @@ project-root/
 > Add `js/components-compiled/` to `.gitignore` if you'd rather generate it fresh
 > on every machine, or commit it if you want the compiled output versioned too.
 
----
 
 ## 3. Compiling
 
@@ -88,7 +84,6 @@ node build.js
 This compiles every `.js` file in `js/components/` and writes the output to
 `js/components-compiled/`, keeping the same filenames.
 
----
 
 ## 4. Referencing compiled files in HTML
 
@@ -98,6 +93,7 @@ Load React first, then your compiled components in **dependency order**
 ```html
 <script src="js/react.js"></script>
 <script src="js/react-dom.js"></script>
+<script src="js/babel.js"></script>
 
 <script src="js/components-compiled/Header.js"></script>
 <script src="js/components-compiled/firstScreen.js"></script>
